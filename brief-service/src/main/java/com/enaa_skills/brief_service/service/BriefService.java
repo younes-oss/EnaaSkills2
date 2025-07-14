@@ -2,6 +2,9 @@ package com.enaa_skills.brief_service.service;
 
 import com.enaa_skills.brief_service.Model.Brief;
 import com.enaa_skills.brief_service.Model.BriefCompetence;
+import com.enaa_skills.brief_service.dto.BriefDto;
+import com.enaa_skills.brief_service.dto.BriefResponseDTO;
+import com.enaa_skills.brief_service.mapper.BriefMapper;
 import com.enaa_skills.brief_service.repository.BriefCompetenceRepository;
 import com.enaa_skills.brief_service.repository.BriefRepository;
 import org.springframework.stereotype.Service;
@@ -19,36 +22,38 @@ public class BriefService {
         this.briefCompetenceRepository = briefCompetenceRepository;
     }
 
-    public Brief creatBrief(Brief brief) {
-        return briefRepository.save(brief);
+    // Créer un brief à partir d'un DTO
+    public BriefResponseDTO createBrief(BriefDto briefDto) {
+        Brief brief = BriefMapper.toEntity(briefDto);
+        Brief saved = briefRepository.save(brief);
+        return BriefMapper.toResponseDTO(saved);
     }
 
-    public List<Brief> getAllBriefs() {
-        return (List<Brief>) briefRepository.findAll();
+    // Récupérer tous les briefs sous forme de DTO de réponse
+    public List<BriefResponseDTO> getAllBriefs() {
+        return ((List<Brief>) briefRepository.findAll())
+                .stream()
+                .map(BriefMapper::toResponseDTO)
+                .collect(java.util.stream.Collectors.toList());
     }
 
-
-    public BriefCompetence associeCompetence(Long briefId,Long competenceId)
-    {
-        Brief brief = briefRepository.findById(briefId).orElseThrow(()->new RuntimeException("Brief not trouvé"));
+    // Associer une compétence à un brief (retourne l'entité ou tu peux créer un DTO spécifique)
+    public BriefCompetence associeCompetence(Long briefId, Long competenceId) {
+        Brief brief = briefRepository.findById(briefId)
+                .orElseThrow(() -> new RuntimeException("Brief not trouvé"));
 
         BriefCompetence briefCompetence = new BriefCompetence();
         briefCompetence.setBrief(brief);
         briefCompetence.setCompetenceId(competenceId);
 
         return briefCompetenceRepository.save(briefCompetence);
-
     }
 
-    public Brief createBriefDTO(Brief brief) {
-        return briefRepository.save(brief);
-    }
-
-    public Brief getBrief(Long id) {
-        return briefRepository.findById(id).orElseThrow(()->{
-            return  new RuntimeException("Brief not found");
-        });
-
+    // Récupérer un brief par son id sous forme de DTO de réponse
+    public BriefResponseDTO getBrief(Long id) {
+        Brief brief = briefRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Brief not found"));
+        return BriefMapper.toResponseDTO(brief);
     }
 
 }
