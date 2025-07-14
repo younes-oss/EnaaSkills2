@@ -23,29 +23,26 @@ public class BriefController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Brief> createBrief(@RequestBody Brief brief){
-        return ResponseEntity.ok(briefService.creatBrief(brief));
+    public ResponseEntity<BriefResponseDTO> createBrief(@RequestBody BriefDto briefDto){
+        return ResponseEntity.ok(briefService.createBrief(briefDto));
     }
 
     @GetMapping
-    public ResponseEntity<List<Brief>> getAllBriefs(){
+    public ResponseEntity<List<BriefResponseDTO>> getAllBriefs(){
         return ResponseEntity.ok(briefService.getAllBriefs());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Brief> getBriefById(@PathVariable Long id){
+    public ResponseEntity<BriefResponseDTO> getBriefById(@PathVariable Long id){
         return ResponseEntity.ok(briefService.getBrief(id));
-
     }
 
     //getAllBriefs
     @GetMapping("/dto")
     public ResponseEntity<List<BriefResponseDTO>> getAllBriefsDTO(){
-        List<Brief> briefs=briefService.getAllBriefs();
-        List<BriefResponseDTO> response = briefs.stream()
-                .map(BriefMapper::toResponseDTO)
-                .toList();
-        return ResponseEntity.ok(response);
+        List<BriefResponseDTO> briefs=briefService.getAllBriefs();
+
+        return ResponseEntity.ok(briefs);
     }
 
 
@@ -53,12 +50,5 @@ public class BriefController {
     public ResponseEntity<BriefCompetence> addCompetence(@PathVariable Long id, @RequestBody Map<String, Long> body){
         Long competenceId = body.get("competenceId");
         return ResponseEntity.ok(briefService.associeCompetence(id, competenceId));
-    }
-
-    @PostMapping("/addBriefDto")
-    public ResponseEntity<BriefDto> createBriefDTO(@RequestBody BriefDto briefDTO){
-        Brief entity = BriefMapper.toEntity(briefDTO);
-        Brief saved = briefService.creatBrief(entity);
-        return ResponseEntity.ok(BriefMapper.toDTO(saved));
     }
 }
