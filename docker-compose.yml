@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  apprenant-service:
+    build: ./apprenant-service
+    ports:
+      - "8081:8080"
+
+  competence-service:
+    build: ./competence-service
+    ports:
+      - "8082:8080"
+
+  brief-service:
+    build: ./brief-service
+    ports:
+      - "8083:8080"
+
+  validation-service:
+    build: ./validation-service
+    ports:
+      - "8084:8080"
