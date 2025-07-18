@@ -11,8 +11,9 @@ import java.util.List;
 @Service
 public class RenduService {
 
-    @Autowired
-    private RenduRepository renduRepository;
+ @Autowired
+  private RenduRepository renduRepository;
+
 
     public Rendu saveRendu(Rendu rendu) {
         rendu.setDateDepot(LocalDateTime.now());

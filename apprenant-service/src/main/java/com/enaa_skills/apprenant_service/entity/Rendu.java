@@ -12,7 +12,6 @@ public class Rendu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long apprenantId;
     private Long briefId;
     private String contenu;
