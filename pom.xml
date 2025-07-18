@@ -26,6 +26,9 @@
 		<module>brief-service</module>
 		<module>apprenant-service</module>
 		<module>competence-service</module>
+
+
+
 	</modules>
 
 </project>
