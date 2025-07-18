@@ -12,7 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/apprenants")
+
 @Tag(name = "Apprenant Management", description = "APIs for managing apprentices")
+
+@com.enaa_skills.apprenant_service.controller.Tag(name = "Apprenant Management", description = "APIs for managing apprentices")
+
 public class ApprenantController {
 
     @Autowired

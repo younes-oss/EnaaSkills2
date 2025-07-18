@@ -28,6 +28,7 @@
 		<module>competence-service</module>
 
 
+		<module>auth-Service</module>
 
 	</modules>
 
