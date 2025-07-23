@@ -2,6 +2,13 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="api-gateway" />
+        <module name="eureka-server" />
+      </profile>
       <profile name="Annotation profile for EnaaSkills" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -9,6 +16,7 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
+<<<<<<< HEAD
         <module name="validation-service" />
 
 
@@ -16,6 +24,11 @@
 
         <module name="brief-service" />
         <module name="apprenant-service" />
+=======
+        <module name="apprenant-service" />
+        <module name="brief-service" />
+        <module name="validation-service" />
+>>>>>>> eurekaserver
       </profile>
       <profile name="Annotation profile for competence-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -26,6 +39,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
         <module name="competence-service" />
+<<<<<<< HEAD
 
       </profile>
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -39,15 +53,29 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auth-Service" target="17" />
+=======
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ApprenantService" target="17" />
+      <module name="passerelle-api" target="17" />
+      <module name="validation-service (1)" target="1.5" />
+      <module name="validation-service (2)" target="1.5" />
+>>>>>>> eurekaserver
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApprenantService" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
       <module name="apprenant-service" options="-parameters" />
       <module name="auth-Service" options="-parameters" />
       <module name="brief-service" options="-parameters" />
       <module name="competence-service" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="passerelle-api" options="-parameters" />
       <module name="validation-service" options="-parameters" />
+      <module name="validation-service (1)" options="" />
     </option>
   </component>
 </project>
