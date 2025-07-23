@@ -27,6 +27,7 @@
 		<module>apprenant-service</module>
 		<module>competence-service</module>
 		<module>api-gateway</module>
+		<module>eureka-server</module>
 		
 	</modules>
 
